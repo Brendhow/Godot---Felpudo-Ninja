@@ -9,9 +9,25 @@ onready var sprite2 = body2.get_node("Sprite2")
 
 var cortada = false 
 
+signal score
+signal life
+
+
 func _ready():
-	randomize()
 	born(Vector2(640,800))
+	randomize()
+	set_process(true)
+	
+
+func _process(delta):
+	if get_pos().y > 800:
+		print("Perdeu")
+		emit_signal("life")
+		queue_free()
+	if body1.get_pos().y > 800 and body2.get_pos().y > 800:
+		print("free!")
+		queue_free()
+
 
 
 func born(inipos):
@@ -28,8 +44,16 @@ func born(inipos):
 func cut():
 	if cortada: return
 	cortada = true
+	emit_signal("score")
 	set_mode(MODE_KINEMATIC)
 	sprite0.queue_free()
 	shape.queue_free()
 	body1.set_mode(MODE_RIGID)
 	body2.set_mode(MODE_RIGID)
+	body1.apply_impulse(Vector2(0,0), Vector2(-100,0).rotated(get_rot()))
+	body2.apply_impulse(Vector2(0,0), Vector2(100,0).rotated(get_rot()))
+	body1.set_angular_velocity(get_angular_velocity())
+	body2.set_angular_velocity(get_angular_velocity())
+
+func _on_Timer_timeout():
+	cut()
