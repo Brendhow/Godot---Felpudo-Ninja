@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://assets/bgfruitninja.jpg" type="Texture" id=1]
 [ext_resource path="res://scenes/pear.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/banana.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/avocado.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/lemon.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/pineApple.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Node2D"]
 
@@ -32,5 +33,11 @@ transform/pos = Vector2( 719.009, 546.615 )
 transform/pos = Vector2( 576.048, 546.615 )
 
 [node name="Lemon" parent="." instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 697.986, 496.159 )
+
+[node name="PineApple" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 504.568, 634.915 )
 
 
